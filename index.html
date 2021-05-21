@@ -42,6 +42,10 @@
             const AL_POWDER_LB_PER_TSP = 44 / 5745.057;
             const AL_POWDER_REQ_GRAMS = desiredQty * AL_GRAMS_PER_LB * .05;
 
+            // Costs per pound
+            const ALUM_COST_PER_GRAM = 15.25 / AL_GRAMS_PER_LB;
+            const AMMONIUM_NITRATE_COST_PER_LB = 1.72;
+
             // Round to 2 places - Aluminum Grams Required
             const alQtyGramsRnd = Math.round((AL_POWDER_REQ_GRAMS + .005) * 100) / 100;
             // Round to 1 place - Aluminum Oz Required
@@ -50,10 +54,16 @@
             const alQtyTspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) * 100) / 100;
             // Round to 2 places - Aluminum tablespoons (tbsp) Required
             const alQtyTbspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) / 3 * 100) / 100;
+            // Cost of Aluminum
+            const alCost = Math.round(ALUM_COST_PER_GRAM * alQtyGramsRnd * 100) / 100;
             // Round to 2 places - Ammonium Nitrate lbs Required
             const amQtyLbs = Math.round(((desiredQty * .95) + .005) * 100) / 100;
             // Round to 1 places - Ammonium Nitrate oz Required
             const amQtyOz = Math.round(((desiredQty * .95) * 16 + .005) * 10) / 10;
+            // Cost of Ammonium Nitrate
+            const amCost = Math.round(AMMONIUM_NITRATE_COST_PER_LB * amQtyLbs * 100) / 100;
+            // Total Cost
+            const totalCostRnd = Math.round((alCost + amCost) * 100) / 100;
 
             // Get the result parent element
             const parent = document.querySelector(".result");
@@ -67,15 +77,20 @@
             alumChild.innerHTML = "Aluminum Powder:<br>TSP: " + alQtyTspRnd +
                 "<br>TBSP: " + alQtyTbspRnd +
                 "<br>Grams:" + alQtyGramsRnd +
-                "<br>Oz: " + alQtyOzRnd;
+                "<br>Oz: " + alQtyOzRnd +
+                "<br>Cost: $" + alCost;
             // Create a child of the results element.
             const ammoniumChild = document.createElement('p');
             // Update the child with the data.
             ammoniumChild.innerHTML = "Ammonium Nitrate:<br>Oz: " + amQtyOz +
-                "<br>Lbs: " + amQtyLbs;
+                "<br>Lbs: " + amQtyLbs +
+                "<br>Cost: $" + amCost;
+            const totalCost = document.createElement('p');
+            totalCost.innerHTML = "Total cost for " + desiredQty + " lbs. is $" + totalCostRnd;
             // Append the children to the parent
             parent.appendChild(alumChild);
             parent.appendChild(ammoniumChild);
+            parent.appendChild(totalCost);
         }
     </script>
 </body>
