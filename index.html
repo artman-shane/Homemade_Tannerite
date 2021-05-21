@@ -46,6 +46,13 @@
             const ALUM_COST_PER_GRAM = 15.25 / AL_GRAMS_PER_LB;
             const AMMONIUM_NITRATE_COST_PER_LB = 1.72;
 
+            // Currency Formatter
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            });
+
             // Round to 2 places - Aluminum Grams Required
             const alQtyGramsRnd = Math.round((AL_POWDER_REQ_GRAMS + .005) * 100) / 100;
             // Round to 1 place - Aluminum Oz Required
@@ -78,15 +85,15 @@
                 "<br>TBSP: " + alQtyTbspRnd +
                 "<br>Grams:" + alQtyGramsRnd +
                 "<br>Oz: " + alQtyOzRnd +
-                "<br>Cost: $" + alCost;
+                "<br>Cost: " + formatter.format(alCost);
             // Create a child of the results element.
             const ammoniumChild = document.createElement('p');
             // Update the child with the data.
             ammoniumChild.innerHTML = "Ammonium Nitrate:<br>Oz: " + amQtyOz +
                 "<br>Lbs: " + amQtyLbs +
-                "<br>Cost: $" + amCost;
+                "<br>Cost: " + formatter.format(amCost);
             const totalCost = document.createElement('p');
-            totalCost.innerHTML = "Total cost for " + desiredQty + " lbs. is $" + totalCostRnd;
+            totalCost.innerHTML = "Total cost for " + desiredQty + " lbs. is " + formatter.format(totalCostRnd);
             // Append the children to the parent
             parent.appendChild(alumChild);
             parent.appendChild(ammoniumChild);
