@@ -1,7 +1,7 @@
-# tannerite
+# tannerite - EXPERIMENTAL ONLY!!!
 Tannerite Mixture
 
-**THIS IS FOR EXPIREMENTAL PURPOSES ONLY! THIS IS NOT TO BE USED IN REAL WORLD!!!**
+**THIS IS FOR EXPERIMENTAL PURPOSES ONLY! THIS IS NOT TO BE USED IN REAL WORLD!!!**
 
 Costs for this project:
 Ammonium Nitrate: $86/50lb or $1.72/lb
