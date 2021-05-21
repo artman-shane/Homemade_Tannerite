@@ -13,7 +13,15 @@
         <div>
             <form id="mixtureRatio">
                 <label for="qty">Enter the QTY (lbs) Desired</label>
-                <input type="number" name="qty" id="qty" placeholder="eg. .25" step=".01">
+                <!-- <input type="number" name="qty" id="qty" placeholder="eg. .25" step=".01"> -->
+                <select name="qty" id="qty">
+                    <option value=".25">1/4 Lbs.</option>
+                    <option value=".5">1/2 Lbs.</option>
+                    <option value=".75">3/4 Lbs.</option>
+                    <option value="1">1 Lbs.</option>
+                    <option value="2">2 Lbs.</option>
+                    <option value="5">5 Lbs.</option>
+                </select>
             </form>
             <button type="submit" onclick="getResults()">Get Results</button>
         </div>
