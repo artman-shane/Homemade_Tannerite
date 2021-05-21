@@ -1,9 +1,11 @@
-# tannerite - EXPERIMENTAL ONLY!!!
+# Homemade Binary Reactive Target (Tannerite) - EXPERIMENTAL ONLY!!!
 Tannerite Mixture
 
-**THIS IS FOR EXPERIMENTAL PURPOSES ONLY! THIS IS NOT TO BE USED IN REAL WORLD!!!**
+**THIS IS FOR EXPERIMENTAL PURPOSES ONLY! DO NOT USE!!!**
 
-Costs for this project:
+The purposes of this was for experimental purposes only. The cost for the Brand Name Tannerite is LESS than building on your own so there is no point. This was just an exercise of my HTML and JS skills to simplify an experiment...
+
+**Costs for this project:**
 Ammonium Nitrate: $86/50lb or $1.72/lb
 Al Powder: $61/4lb or $15.25/lb
 
