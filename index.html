@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tannerite Mixtures</title>
+    <title>Homemade Binary Target Mixtures (Tannerite)</title>
 </head>
 
 <body>
     <section>
+        <h1>Homemade Binary Target Mixtures (Tannerite)</h1>
         <div>
             <form id="mixtureRatio">
                 <label for="qty">Enter the QTY (lbs) Desired</label>
@@ -32,31 +33,47 @@
         function getResults() {
             const qtyElement = document.querySelector("#qty").value;
             console.log("Qty entered wsa: " + qtyElement);
+            // What is the qty selected from the element? If NAN then return 0
             const desiredQty = parseFloat(qtyElement != "" ? qtyElement : 0);
 
-            // Rounding to 2 decimal places UP. Add.5 so it rounds to next .01 place.
+            // Conversions, Weights, and volume measurements.
             const AL_GRAMS_PER_LB = 453.5924;
             const AL_GRAMS_PER_TSP = 3.47;
             const AL_POWDER_LB_PER_TSP = 44 / 5745.057;
             const AL_POWDER_REQ_GRAMS = desiredQty * AL_GRAMS_PER_LB * .05;
-            const alQtyGramsRnd = Math.round((AL_POWDER_REQ_GRAMS + .005) * 100) / 100;
-            const alQtyOzRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_LB * 16 + .005) * 10) / 10;
-            const alQtyTspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) * 100) / 100;
-            const alQtyTbspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) / 3 * 100) / 100;
 
+            // Round to 2 places - Aluminum Grams Required
+            const alQtyGramsRnd = Math.round((AL_POWDER_REQ_GRAMS + .005) * 100) / 100;
+            // Round to 1 place - Aluminum Oz Required
+            const alQtyOzRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_LB * 16 + .005) * 10) / 10;
+            // Round to 2 places - Aluminum teaspoons (tsp) Required
+            const alQtyTspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) * 100) / 100;
+            // Round to 2 places - Aluminum tablespoons (tbsp) Required
+            const alQtyTbspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) / 3 * 100) / 100;
+            // Round to 2 places - Ammonium Nitrate lbs Required
             const amQtyLbs = Math.round(((desiredQty * .95) + .005) * 100) / 100;
+            // Round to 1 places - Ammonium Nitrate oz Required
             const amQtyOz = Math.round(((desiredQty * .95) * 16 + .005) * 10) / 10;
 
+            // Get the result parent element
             const parent = document.querySelector(".result");
+            // Remove all children from the element found for +1 runs of the application
             for (let i = parent.childNodes.length - 1; i >= 0; i--) {
                 parent.removeChild(parent.childNodes[i]);
             }
+            // Create a child of the results element.
             const alumChild = document.createElement('p');
+            // Update the child with the data.
             alumChild.innerHTML = "Aluminum Powder:<br>TSP: " + alQtyTspRnd +
                 "<br>TBSP: " + alQtyTbspRnd +
-                "<br>Grams:" + alQtyGramsRnd + "<br>Oz: " + alQtyOzRnd;
+                "<br>Grams:" + alQtyGramsRnd +
+                "<br>Oz: " + alQtyOzRnd;
+            // Create a child of the results element.
             const ammoniumChild = document.createElement('p');
-            ammoniumChild.innerHTML = "Ammonium Nitrate:<br>Oz: " + amQtyOz + "<br>Lbs: " + amQtyLbs;
+            // Update the child with the data.
+            ammoniumChild.innerHTML = "Ammonium Nitrate:<br>Oz: " + amQtyOz +
+                "<br>Lbs: " + amQtyLbs;
+            // Append the children to the parent
             parent.appendChild(alumChild);
             parent.appendChild(ammoniumChild);
         }
