@@ -3,9 +3,9 @@ Tannerite Mixture
 
 **THIS IS FOR EXPERIMENTAL PURPOSES ONLY! DO NOT USE!!!**
 
-The purposes of this was for experimental purposes only. The cost for the Brand Name Tannerite is LESS than building on your own so there is no point. This was just an exercise of my HTML and JS skills to simplify an experiment...
+The purposes of this was for experimental purposes only. This was just an exercise of my HTML and JS skills to simplify an experiment...
 
-**Costs for this project:**
+**Costs for this project (2021):**
 Ammonium Nitrate: $86/50lb or $1.72/lb
 Al Powder: $61/4lb or $15.25/lb
 
