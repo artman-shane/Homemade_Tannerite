@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tannerite Mixtures</title>
+</head>
+
+<body>
+    <section>
+        <div>
+            <form id="mixtureRatio">
+                <label for="qty">Enter the QTY (lbs) Desired</label>
+                <input type="number" name="qty" id="qty" placeholder="eg. .25" step=".01">
+            </form>
+            <button type="submit" onclick="getResults()">Get Results</button>
+        </div>
+        <div class="result">
+        </div>
+    </section>
+    <script type="text/javascript">
+        function getResults() {
+            const qtyElement = document.querySelector("#qty").value;
+            console.log("Qty entered wsa: " + qtyElement);
+            const desiredQty = parseFloat(qtyElement != "" ? qtyElement : 0);
+
+            // Rounding to 2 decimal places UP. Add.5 so it rounds to next .01 place.
+            const AL_GRAMS_PER_LB = 453.5924;
+            const AL_GRAMS_PER_TSP = 3.47;
+            const AL_POWDER_LB_PER_TSP = 44 / 5745.057;
+            const AL_POWDER_REQ_GRAMS = desiredQty * AL_GRAMS_PER_LB * .05;
+            const alQtyGramsRnd = Math.round((AL_POWDER_REQ_GRAMS + .005) * 100) / 100;
+            const alQtyOzRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_LB * 16 + .005) * 10) / 10;
+            const alQtyTspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) * 100) / 100;
+            const alQtyTbspRnd = Math.round((AL_POWDER_REQ_GRAMS / AL_GRAMS_PER_TSP) / 3 * 100) / 100;
+
+            const amQtyLbs = Math.round(((desiredQty * .95) + .005) * 100) / 100;
+            const amQtyOz = Math.round(((desiredQty * .95) * 16 + .005) * 10) / 10;
+
+            const parent = document.querySelector(".result");
+            for (let i = parent.childNodes.length - 1; i >= 0; i--) {
+                parent.removeChild(parent.childNodes[i]);
+            }
+            const alumChild = document.createElement('p');
+            alumChild.innerHTML = "Aluminum Powder:<br>TSP: " + alQtyTspRnd +
+                "<br>TBSP: " + alQtyTbspRnd +
+                "<br>Grams:" + alQtyGramsRnd + "<br>Oz: " + alQtyOzRnd;
+            const ammoniumChild = document.createElement('p');
+            ammoniumChild.innerHTML = "Ammonium Nitrate:<br>Oz: " + amQtyOz + "<br>Lbs: " + amQtyLbs;
+            parent.appendChild(alumChild);
+            parent.appendChild(ammoniumChild);
+        }
+    </script>
+</body>
+
+</html>
